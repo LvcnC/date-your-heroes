@@ -6,10 +6,11 @@ create table users(
 	id int primary key auto_increment,
 	name varchar(40),
     surname varchar(40),
-    username varchar(40),
+    username varchar(40) unique NOT NULL,
     password varchar(40),
     dob date,
-    sex tinyint
+    sex tinyint,
+    sexualOrientation varchar(40)
 );
 
 INSERT INTO users 
