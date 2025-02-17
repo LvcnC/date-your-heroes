@@ -36,6 +36,7 @@ public class Context {
 		us.setPassword(map.get("password"));
 		us.setDob(map.get("dob"));
 		us.setSex(Short.parseShort(map.get("sex")));
+		us.setSexualOrientation(map.get("sexualOrientation"));
 		
 		return us;
 	}

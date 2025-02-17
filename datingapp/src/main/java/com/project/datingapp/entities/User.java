@@ -1,51 +1,20 @@
 package com.project.datingapp.entities;
 
-public class User extends Entity{
+public class User extends Person{
 
-	private String name;
-	private String surname;
-	private String username;
 	private String password;
-	private String dob;
-	private short sex;
-	
+	private String sexualOrientation;
+
 	public User() {
 		
 	}
 	
-	public User(String name, String surname, String username, String password,String dob, short sex) {
-		setName(name);
-		setSurname(surname);
-		setUsername(username);
+	public User(String name, String surname, String username, 
+				String password,String dob, short sex, String sexualOrientation) {
+		super(name, surname, username,dob,sex);
 		setPassword(password);
-		setDob(dob);
-		setSex(sex);
+		setSexualOrientation(sexualOrientation);
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 
 	public String getPassword() {
 		return password;
@@ -55,28 +24,16 @@ public class User extends Entity{
 		this.password = password;
 	}
 
-	
-	public String getDob() {
-		return dob;
+	public String getSexualOrientation() {
+		return sexualOrientation;
 	}
 
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
-
-	public short getSex() {
-		return sex;
-	}
-
-	public void setSex(short sex) {
-		this.sex = sex;
+	public void setSexualOrientation(String sexualOrientation) {
+		this.sexualOrientation = sexualOrientation;
 	}
 	
 	public String toString() {
-		return super.toString() + " - " + name 	+ " - " + surname + " - " + username
-								+ " - " + dob 	+ " - " + sex;
+		return super.toString() + " - " + sexualOrientation;
 	}
-	
-	
 	
 }

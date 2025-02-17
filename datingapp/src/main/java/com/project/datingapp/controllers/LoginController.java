@@ -63,6 +63,7 @@ public class LoginController {
 	@GetMapping("newuser")
 	public String newuser(@RequestParam Map<String,String> map) {
 		
+		System.out.println("sono qui");
 		for(String s : map.keySet()) {
 			System.out.println(s);
 		}

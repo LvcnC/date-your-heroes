@@ -12,7 +12,7 @@ public class DaoUsers
 {
 
 	@Autowired
-	private Database db;
+	private Database db = new Database();
 	
 	@Autowired
 	private ApplicationContext context;
@@ -33,12 +33,12 @@ public class DaoUsers
 	public boolean create(User user) {
 		
 		String query = "INSERT INTO users \r\n"
-				+ "(name,surname,username,password,dob,sex)\r\n"
+				+ "(name,surname,username,password,dob,sex,sexualOrientation)\r\n"
 				+ "values\r\n"
-				+ "(?,?,?,?,?,?)";
+				+ "(?,?,?,?,?,?,?)";
 		
 		return db.update(query, user.getName(), user.getSurname(), user.getUsername(), 
-								user.getPassword(), user.getDob(), user.getSex() + "");
+								user.getPassword(), user.getDob(), user.getSex() + "", user.getSexualOrientation());
 		
 	}
 	
@@ -51,12 +51,13 @@ public class DaoUsers
 				+ "    username = ?,\r\n"
 				+ "		password = ?,\r\n"
 				+ "    dob = ?,\r\n"
-				+ "    sex = ?\r\n"
+				+ "    sex = ?,\r\n"
+				+ "    sexualOrientation = ?\r\n"
 				+ "WHERE id = ?";
 		
 		return db.update(query, user.getName(), user.getSurname(), user.getUsername(),
 								user.getPassword(), user.getDob(), user.getSex() + "" , 
-								user.getId() + "");
+								user.getSexualOrientation(),user.getId() + "");
 	}
 	
 	public boolean delete(int id) {
