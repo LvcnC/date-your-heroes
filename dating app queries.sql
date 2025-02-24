@@ -1,0 +1,45 @@
+create database datingapp;
+use datingapp;
+drop table users;
+
+create table users(
+	id int primary key auto_increment,
+	name varchar(40),
+    surname varchar(40),
+    username varchar(40) unique NOT NULL,
+    password varchar(40),
+    dob date,
+    sex tinyint,
+    sexualOrientation varchar(40)
+);
+
+INSERT INTO users 
+(name,surname,username,password,dob,sex)
+values
+("ciccio","verdi", "cic0", "12345678","1888-10-05",0);
+
+UPDATE users
+SET name = ?,
+	surname = ?,
+    username = ?,
+    dob = ?,
+    sex = ?
+WHERE id = ?;
+
+
+create table interests(
+	id int primary key auto_increment,
+    name varchar(40)
+);
+
+create table user_interest(
+	idUser int,
+    idInterest int
+);
+
+SELECT interests.name as 'interest'
+FROM    interests INNER JOIN user_interest
+ON		interests.id = user_interest.idInterest 
+INNER JOIN users
+ON			users.id = user_interest.idUser
+WHERE 		users.username = "anna";
