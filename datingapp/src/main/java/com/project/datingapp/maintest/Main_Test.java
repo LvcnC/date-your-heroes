@@ -19,16 +19,12 @@ public class Main_Test {
 		user.put("surname", "rossi");
 		db.update("UPDATE users SET surname = ? WHERE id = 1", user.get("surname"));
 		*/
+		
 		DaoUsers du = new DaoUsers();
-		short sex = 0;
-		User us = new User("hitler","adolf", "ado", "blondie", "1993-11-25", sex,"Hetero");
-		du.create(us);
 		
-		System.out.println(us);
-		for(Map<String,String> m : du.read("SELECT * FROM users")) {
-			System.out.println(m);
-		}
-		
+		for(String s : du.interests("anna")){
+			System.out.println("result " + s);
+		}		
 		
 	}
 
