@@ -1,6 +1,6 @@
 package com.project.datingapp.entities;
 
-public class Interest
+public class Interest extends Entity
 {
     private String interest;
 

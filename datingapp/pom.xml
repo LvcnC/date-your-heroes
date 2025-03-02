@@ -66,7 +66,23 @@
 		    <scope>provided</scope>
 		 </dependency>
 
-	</dependencies>
+		 <!-- Spring dependency that allows us to connect to OpenAI API-->
+		 <!-- https://mvnrepository.com/artifact/group.springframework.ai/spring-ai-openai-spring-boot-starter -->
+		 <!-- TUTORIAL: https://spring.io/projects/spring-ai -->
+		<!--<dependency>
+    		<groupId>group.springframework.ai</groupId>
+    		<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+    		<version>1.1.0</version>
+		</dependency>
+		-->
+
+	
+   <dependency>
+     <groupId>org.apache.poi</groupId>
+     <artifactId>poi</artifactId>
+     <version>4.1.0</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>

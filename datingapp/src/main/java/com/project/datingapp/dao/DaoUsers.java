@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import com.project.datingapp.entities.User;
+import com.project.datingapp.entities.*;
 
 public class DaoUsers
 {
@@ -63,30 +63,30 @@ public class DaoUsers
 	
 	public boolean delete(int id) {
 		
-		String query = "DELETE FROM users WHERE id = ?";
+		String query = "DELETE FROM users WHERE user_id = ?";
 		
 		return db.update(query, id + "");
 	}
 	
 	public User searchForId(int id) {
 		
-		String query = "SELECT * FROM users WHERE id = ?";
+		String query = "SELECT * FROM users WHERE user_id = ?";
 		Map<String,String> mapUser = db.row(query, id + "");
 		
 		// we CREATE (factory!!) the object User
 		// and then we (reflection) FILL the object with the values from the map
-		User us = (User) context.getBean("userObject", mapUser);
+		//User us = (User) context.getBean("userObject", mapUser);
 		
-		/*
+		
 		User us = new User();
-		us.setId(Integer.parseInt(mapUser.get("id")));
+		us.setId(Integer.parseInt(mapUser.get("user_id")));
 		us.setName(mapUser.get("name"));
 		us.setSurname(mapUser.get("surname"));
 		us.setUsername(mapUser.get("username"));
 		us.setPassword(mapUser.get("password"));
 		us.setDob(mapUser.get("dob"));
 		us.setSex(Short.parseShort(mapUser.get("sex")));
-		*/
+		
 		
 		return us;
 	}
@@ -96,17 +96,17 @@ public class DaoUsers
 		String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 		Map<String,String> mapUser = readUser(query, username,password);
 		
-		User us = (User) context.getBean("userObject", mapUser);
-		/*
+		//User us = (User) context.getBean("userObject", mapUser);
+		
 		User us = new User();
-		us.setId(Integer.parseInt(mapUser.get("id")));
+		us.setId(Integer.parseInt(mapUser.get("user_id")));
 		us.setName(mapUser.get("name"));
 		us.setSurname(mapUser.get("surname"));
 		us.setUsername(mapUser.get("username"));
 		us.setPassword(mapUser.get("password"));
 		us.setDob(mapUser.get("dob"));
 		us.setSex(Short.parseShort(mapUser.get("sex")));
-		*/
+		
 		return (us != null) ? us : null;
 	}
 
@@ -115,15 +115,25 @@ public class DaoUsers
 	 * @param username
 	 * @return ArrayList<String> of the interests
 	 */
-	public ArrayList<String> interests(String username){
-		String query = "SELECT " + 
-						"\t\t\tinterests.name as 'interest'\n" + 
-						"FROM\t\tinterests INNER JOIN user_interest\n" + 
-						"ON\t\t\tinterests.id = user_interest.idInterest\n" + 
-						"INNER JOIN\tusers\n" + 
-						"ON\t\t\tusers.id = user_interest.idUser\n" + 
-						"WHERE \t\tusers.username = ?";
-		return db.rowsArrayList(query, username);
+	public ArrayList<Interest> interests(String name){
+		ArrayList<Interest> ris = new ArrayList<>();
+		String query = "SELECT \tinterests.interest_id as 'id',\n" + //
+						"\t\tinterests.name as 'name'\n" + //
+						"FROM    interests INNER JOIN user_interest\n" + //
+						"ON\t\tinterests.interest_id = user_interest.interest_id \n" + //
+						"INNER JOIN users\n" + //
+						"ON\t\t\tusers.user_id = user_interest.user_id\n" + //
+						"WHERE \t\tusers.name = ?";
+		List<Map<String,String>> interests = db.rows(query, name);
+		Interest interest;
+
+		for(Map<String,String> map : interests){
+			System.out.println(map.get("id"));
+			System.out.println(map.get("name"));
+			interest = (Interest) context.getBean("interestFromMap", map);
+			ris.add(interest);
+		}
+		return ris;
 	}
 	
 	

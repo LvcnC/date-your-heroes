@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 
 import com.project.datingapp.dao.DaoUsers;
 import com.project.datingapp.dao.Database;
-import com.project.datingapp.entities.User;
+import com.project.datingapp.entities.*;
 
 @Configuration
 public class Context {
@@ -19,7 +19,8 @@ public class Context {
 	}
 	
 	
-	@Bean DaoUsers du() {
+	@Bean 
+	DaoUsers du() {
 		return new DaoUsers();
 	}
 	
@@ -41,5 +42,15 @@ public class Context {
 		return us;
 	}
 	
-	
+	@Bean
+	@Scope("prototype")
+	public Interest interestFromMap(Map<String,String> map){
+
+		Interest interest = new Interest();
+		interest.setId(Integer.parseInt(map.get("id")));
+		interest.setInterest(map.get("name"));
+
+		return interest;
+	}
+
 }

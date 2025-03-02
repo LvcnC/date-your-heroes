@@ -21,9 +21,10 @@ public class Main_Test {
 		*/
 		
 		DaoUsers du = new DaoUsers();
-		
-		for(String s : du.interests("anna")){
-			System.out.println("result " + s);
+		User us = du.searchForId(1);
+		System.out.println("dio stronzo");
+		for(Interest s : du.interests(us.getName())){
+			System.out.println("result " + s.getInterest());
 		}		
 		
 	}

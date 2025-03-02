@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.ss.formula.functions.T;
+
+import com.project.datingapp.entities.Interest;
+
 public class Database
 {
 
@@ -120,44 +124,5 @@ public class Database
 			return null;
 		}
 	}
-
-
-	public ArrayList<String> rowsArrayList(String query, String...params){
-
-		ArrayList<String> ris = new ArrayList<String>();
-		PreparedStatement ps = null;
-
-		try {
-
-			openConnection();
-			ps = c.prepareStatement(query);
-			for(int i = 0; i < params.length; i++) {
-
-				System.out.println(params[i]);
-				// nella posizione 1 (causa SQL), mettici il parametro [0]
-				ps.setString(i + 1, params[i]);
-
-			}
-
-			ResultSet table = ps.executeQuery();
-			int nColumns = table.getMetaData().getColumnCount();
-
-			while(table.next()) {
-
-				for(int i = 1; i <= nColumns; i++) {
-					ris.add(table.getString(i));
-
-				}
-
-			}
-
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		closeConnection();
-		return ris;
-	}
-
-
 
 }

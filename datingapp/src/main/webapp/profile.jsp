@@ -2,7 +2,7 @@
         pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.project.datingapp.dao.*" %>
-<%@ page import="com.project.datingapp.Entities.*" %>
+<%@ page import="com.project.datingapp.entities.*" %>
 
 <% User user = (User) request.getAttribute("loggeduser");%>
 <%  DaoUsers du = (DaoUsers) request.getAttribute("daousers");%>
@@ -16,11 +16,10 @@
         <p>Password <%= user.getPassword() %></p>
         <p>Sexuality <%= user.getSexualOrientation() %></p>
         <p>Interests</p>
-        <p><% for(String interest : du.interests(user.getUsername()))
-                {
-                   
+        <p><% for(Interest interest : du.interests(user.getName()))
+                {    
                     %>
-                    <%= interest %>
+                    <%= interest.getInterest() %>
                     <br>
                <% }
         %><p>
