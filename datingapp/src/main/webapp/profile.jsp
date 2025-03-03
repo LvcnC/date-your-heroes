@@ -23,6 +23,10 @@
                     <br>
                <% }
         %><p>
+        <p>Shared interests</p>
+        <p>
+            
+        </p>
     </body>
 </html>
 

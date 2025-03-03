@@ -11,4 +11,9 @@ public class HomeController {
 		return "home.html";
 	}
 	
+	@GetMapping("characterprofile")
+	public String characterprofile(){
+		return "characterprofile.jsp";
+	}
+
 }
