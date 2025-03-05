@@ -58,7 +58,7 @@ public class Database
 			openConnection();
 			PreparedStatement ps = c.prepareStatement(query);
 			for(int i = 0; i < params.length; i++) {
-
+					
 				ps.setString(i + 1, params[i]);
 
 			}
@@ -86,9 +86,8 @@ public class Database
 
 			openConnection();
 			ps = c.prepareStatement(query);
+			
 			for(int i = 0; i < params.length; i++) {
-
-				System.out.println(params[i]);
 				// nella posizione 1 (causa SQL), mettici il parametro [0]
 				ps.setString(i + 1, params[i]);
 

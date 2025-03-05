@@ -34,7 +34,8 @@ public class LoginController {
 						HttpSession session) {
 		User us;
 		try {
-			
+			System.out.println(user);
+			System.out.println(pass);
 			us = du.searchUser(user, pass);
 			
 		}catch(Exception err) {
@@ -63,7 +64,7 @@ public class LoginController {
 		// put the credentials in the model 
 		model.addAttribute("loggeduser", loggedUser);
 		model.addAttribute("daousers", du);
-		System.out.println(model.getAttribute("loggeduser"));
+		System.out.println("LOGIN : " + model.getAttribute("loggeduser"));
 		return "profile.jsp";
 	}
 	

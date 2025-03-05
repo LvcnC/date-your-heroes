@@ -155,7 +155,6 @@ GROUP BY	users.name
 ORDER BY	count_interest DESC;
 
 SELECT 
-    users.name AS 'user',
     characters.name AS 'character',
     COUNT(character_interest.character_id) AS count_interest  -- how often the name appears...
 FROM 
@@ -171,10 +170,30 @@ INNER JOIN interests
 WHERE 
     users.user_id = 1  -- Filter by the specific user (user_id = 1)
 GROUP BY 
-    users.name, characters.name  -- Group by user and character
+    characters.name  -- Group by user and character
 ORDER BY 
     count_interest DESC;  -- Order by the count of shared interests in descending order
 
+SELECT 
+	interests.name as interest,
+    characters.name as character_name
+FROM 
+    user_interest
+INNER JOIN character_interest
+    ON user_interest.interest_id = character_interest.interest_id
+INNER JOIN users
+    ON users.user_id = user_interest.user_id
+INNER JOIN characters
+    ON characters.character_id = character_interest.character_id
+INNER JOIN interests
+    ON interests.interest_id = user_interest.interest_id
+WHERE 
+    users.user_id = 1  -- Filter by the specific user (user_id = 1)
+GROUP BY 
+    interests.name,  characters.name;  -- Group by user and character
+
+    
+    use datingapp;
 
 insert into interests
 (name)

@@ -12,11 +12,12 @@
     </head>
     <body>
         <h1>PROFILE</h1>
+        <a href="swipe">SWIPE</a>
         <p>Username <%= user.getUsername() %></p>
         <p>Password <%= user.getPassword() %></p>
         <p>Sexuality <%= user.getSexualOrientation() %></p>
         <p>Interests</p>
-        <p><% for(Interest interest : du.interests(user.getName()))
+        <p><% for(Interest interest : du.interests(user.getId()))
                 {    
                     %>
                     <%= interest.getInterest() %>

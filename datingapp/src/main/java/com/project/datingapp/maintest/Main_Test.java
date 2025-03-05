@@ -19,14 +19,20 @@ public class Main_Test {
 		user.put("surname", "rossi");
 		db.update("UPDATE users SET surname = ? WHERE id = 1", user.get("surname"));
 		*/
-		
+		/*
 		DaoUsers du = new DaoUsers();
 		User us = du.searchForId(1);
 		System.out.println("dio stronzo");
 		for(Interest s : du.interests(us.getName())){
 			System.out.println("result " + s.getInterest());
 		}		
-		
+		*/
+		DaoUsers du = new DaoUsers();
+		for(Map<String,String> record : du.getMatchingCharacters(2))
+		{
+			System.out.println(record.get("interest"));
+			System.out.println(record.get("character"));
+	  	}
 	}
 
 }
