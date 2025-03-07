@@ -6,6 +6,7 @@
 
 <% User user = (User) request.getAttribute("loggeduser");%>
 <%  DaoUsers du = (DaoUsers) request.getAttribute("daousers");%>
+<% ArrayList<Image> images = (ArrayList<Image>) request.getAttribute("images"); %>
 <html>
     <head>
         <title>STO CAZZO</title>
@@ -25,10 +26,15 @@
                     <br>
                <% }
         %><p>
-        <p>Shared interests</p>
-        <p>
-            
-        </p>
+        <p>Image</p>
+        <p><% for(Image im : images)
+                {    
+                    %>
+                    <%= im.getImageUrl() %>
+                    <br>
+               <% }
+        %><p>
+
     </body>
 </html>
 

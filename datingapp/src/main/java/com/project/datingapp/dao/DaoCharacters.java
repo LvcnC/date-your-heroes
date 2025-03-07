@@ -17,10 +17,7 @@ public class DaoCharacters {
     @Autowired
     private ApplicationContext context;
 
-    // crea arraylist che aggrega tutti i characters, se l'interesse è almeno 1,
-    // una volta visualizzati in una session, salva gli indice dei characters
-    // visualizzati e li scarta
-    // una volta finiti, resetta 
+    
     private ArrayList<HistoryCharacter> swipeableCharacters;
     private ArrayList<Integer> usedCharacter;
 

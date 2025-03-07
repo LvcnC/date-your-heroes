@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import com.project.datingapp.dao.DaoCharacters;
+import com.project.datingapp.dao.DaoImages;
 import com.project.datingapp.dao.DaoUsers;
 import com.project.datingapp.dao.Database;
 import com.project.datingapp.entities.*;
@@ -32,6 +33,11 @@ public class Context {
 		return new DaoCharacters();
 	}
 	
+	@Bean
+	DaoImages di(){
+		return new DaoImages();
+	}
+
 	@Bean
 	@Scope("prototype")
 	public User userNew(Map<String,String> map) {
@@ -91,6 +97,20 @@ public class Context {
 		character.setHistoricalPeriod(map.get("historicalPeriod"));
 		
 		return character;
+	}
+
+	@Bean
+	@Scope("prototype")
+	public Image imageFromMap(Map<String,String> map){
+		Image im = new Image();
+		im.setId(Integer.parseInt(map.get("image_id")));
+		im.setOwnerType(map.get("owner_type"));
+		im.setOwnerId(Integer.parseInt(map.get("owner_id")));
+		im.setImageUrl(map.get("image_url"));
+		im.setDescription(map.get("description"));
+		im.setCreatedAt(map.get("create_at"));
+
+		return im;
 	}
 
 }

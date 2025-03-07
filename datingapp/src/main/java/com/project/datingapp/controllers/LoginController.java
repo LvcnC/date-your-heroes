@@ -1,5 +1,6 @@
 package com.project.datingapp.controllers;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.datingapp.dao.DaoImages;
 import com.project.datingapp.dao.DaoUsers;
+import com.project.datingapp.entities.Image;
 import com.project.datingapp.entities.User;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +22,9 @@ public class LoginController {
 
 	@Autowired
 	private DaoUsers du;
+
+	@Autowired
+	private DaoImages di;
 	
 	@Autowired
 	private ApplicationContext context;
@@ -65,7 +71,9 @@ public class LoginController {
 		// put the credentials in the model 
 		model.addAttribute("loggeduser", loggedUser);
 		model.addAttribute("daousers", du);
-		
+		ArrayList<Image> images = di.getImages(loggedUser.getId(), "user");
+		model.addAttribute("images", images);
+
 		return "profile.jsp";
 	}
 	

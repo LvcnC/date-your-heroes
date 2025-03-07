@@ -3,6 +3,7 @@ package com.project.datingapp.maintest;
 import java.util.Map;
 
 import com.project.datingapp.dao.*;
+import com.project.datingapp.entities.Image;
 
 public class Main_Test {
 
@@ -26,11 +27,10 @@ public class Main_Test {
 			System.out.println("result " + s.getInterest());
 		}		
 		*/
-		DaoUsers du = new DaoUsers();
-		for(Map<String,String> record : du.getMatchingCharacters(2))
+		DaoImages di = new DaoImages();
+		for(Image im : di.getImages(2, "user"))
 		{
-			System.out.println(record.get("interest"));
-			System.out.println(record.get("character"));
+			System.out.println(im.toString());
 	  	}
 	}
 
