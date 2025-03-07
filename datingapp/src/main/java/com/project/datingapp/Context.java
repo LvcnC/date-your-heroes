@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import com.project.datingapp.dao.DaoCharacters;
 import com.project.datingapp.dao.DaoUsers;
 import com.project.datingapp.dao.Database;
 import com.project.datingapp.entities.*;
-import com.project.datingapp.entities.Character;
+import com.project.datingapp.entities.HistoryCharacter;
 
 @Configuration
 public class Context {
@@ -25,7 +26,29 @@ public class Context {
 		return new DaoUsers();
 	}
 	
+
+	@Bean
+	DaoCharacters dc(){
+		return new DaoCharacters();
+	}
 	
+	@Bean
+	@Scope("prototype")
+	public User userNew(Map<String,String> map) {
+		
+		User us = new User();
+		//us.setId(0);
+		us.setName(map.get("name"));
+		us.setSurname(map.get("surname"));
+		us.setUsername(map.get("username"));
+		us.setPassword(map.get("password"));
+		us.setDob(map.get("dob"));
+		us.setSex(Short.parseShort(map.get("sex")));
+		us.setSexualOrientation(map.get("sexualOrientation"));
+		
+		return us;
+	}
+
 	@Bean
 	@Scope("prototype")
 	public User userObject(Map<String,String> map) {
@@ -56,9 +79,9 @@ public class Context {
 
 	@Bean
 	@Scope("prototype")
-	public Character characterFromMap(Map<String,String> map){
+	public HistoryCharacter characterFromMap(Map<String,String> map){
 
-		Character character = new Character();
+		HistoryCharacter character = new HistoryCharacter();
 		character.setId(Integer.parseInt(map.get("character_id")));
 		character.setName(map.get("name"));
 		character.setSurname(map.get("surname"));

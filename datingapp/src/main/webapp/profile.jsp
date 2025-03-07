@@ -13,6 +13,7 @@
     <body>
         <h1>PROFILE</h1>
         <a href="swipe">SWIPE</a>
+        <p>Username <%= user.getId() %></p>
         <p>Username <%= user.getUsername() %></p>
         <p>Password <%= user.getPassword() %></p>
         <p>Sexuality <%= user.getSexualOrientation() %></p>

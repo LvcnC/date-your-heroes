@@ -1,14 +1,14 @@
 package com.project.datingapp.entities;
 
-public class Character extends Person{
+public class HistoryCharacter extends Person{
 
     private String historicalPeriod;
 
-    public Character(){
+    public HistoryCharacter(){
 
     }
 
-    public Character(String name, String surname, String username, 
+    public HistoryCharacter(String name, String surname, String username, 
                     String dob, short sex, String historicalPeriod){
         super(name, surname, username,dob,sex);
         setHistoricalPeriod(historicalPeriod);

@@ -61,10 +61,11 @@ public class LoginController {
 	public String profile(HttpSession session, Model model){
 		// take the logged in user (SESSION)
 		User loggedUser = (User) session.getAttribute("loggeduser");
+
 		// put the credentials in the model 
 		model.addAttribute("loggeduser", loggedUser);
 		model.addAttribute("daousers", du);
-		System.out.println("LOGIN : " + model.getAttribute("loggeduser"));
+		
 		return "profile.jsp";
 	}
 	
@@ -76,13 +77,10 @@ public class LoginController {
 	@GetMapping("newuser")
 	public String newuser(@RequestParam Map<String,String> map) {
 		
-		System.out.println("sono qui");
-		for(String s : map.keySet()) {
-			System.out.println(s);
-		}
-		User us = (User) context.getBean("userObject", map);
+		// we create a new user
+		User us = (User) context.getBean("userNew", map);
 		System.out.println("Created succefully? " + du.create(us));
-		
+
 		return "formlogin";
 	}
 	

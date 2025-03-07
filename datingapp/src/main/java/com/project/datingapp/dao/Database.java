@@ -9,10 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.ss.formula.functions.T;
-
-import com.project.datingapp.entities.Interest;
-
 public class Database
 {
 
@@ -92,7 +88,8 @@ public class Database
 				ps.setString(i + 1, params[i]);
 
 			}
-
+			System.out.println(ps.toString());
+			
 			ResultSet table = ps.executeQuery();
 			int nColumns = table.getMetaData().getColumnCount();
 

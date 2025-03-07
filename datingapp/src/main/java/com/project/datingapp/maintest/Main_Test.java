@@ -3,7 +3,6 @@ package com.project.datingapp.maintest;
 import java.util.Map;
 
 import com.project.datingapp.dao.*;
-import com.project.datingapp.entities.*;
 
 public class Main_Test {
 
